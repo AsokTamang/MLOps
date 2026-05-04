@@ -18,9 +18,8 @@ def df_to_tfdata(df, topic_lookup, title_tokenizer, batch_size=32, buffer_size=1
     titles = df['title']    
     labels = df['topic']
 
-    # Converting the titles and topics to integers using the tokenizer
-    sequences = title_tokenizer(titles)
-    labels = topic_lookup(labels)
+    sequences = title_tokenizer(titles)  #converting the news titles to integers using the tokenizer
+    labels = topic_lookup(labels)  #converting the topics to integers using the index of the labels in the lookup table
 
     # Combining the numeric representations to a tf.data.Dataset
     dataset = tf.data.Dataset.from_tensor_slices((sequences,labels))
